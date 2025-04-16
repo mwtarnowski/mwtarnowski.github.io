@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>test</title>
+</head>
+
+<body>
+
+  <div id="bit-container">
+    <!-- bit-cell elements here -->
+  </div>
+
+  <div class="hline"></div>
+
+  <div id="values-section">
+    <div class="input-group">
+      <label for="input0">Jumbo:</label>
+      <div class="input-wrapper">
+        <input type="text" id="input0" readonly>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label for="input1">Vox:</label>
+      <div class="input-wrapper">
+        <input type="text" id="input1">
+        <div class="buttons">
+          <button type="button">−</button>
+          <button type="button">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label for="input2">Buzzbomb:</label>
+      <div class="input-wrapper">
+        <input type="text" id="input2">
+        <div class="buttons">
+          <button type="button">−</button>
+          <button type="button">+</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const totalBits = 32;
+    let bitPattern = new Array(totalBits).fill(0);
+
+    function createBitFields() {
+      const bitContainer = document.getElementById('bit-container');
+      bitContainer.innerHTML = '';
+
+      const getPartClass = i => i === 0 ? 'sgn' : (i <= 8 ? 'exp' : 'man');
+
+      for (let i = 0; i < totalBits; i++) {
+        const index = totalBits - i - 1;
+
+        const bitCell = document.createElement('div');
+        bitCell.classList.add('bit-cell');
+
+        const bitIndex = document.createElement('div');
+        bitIndex.classList.add('bit-index');
+        bitIndex.textContent = index.toString().padStart(2, '0');
+        bitCell.appendChild(bitIndex);
+
+        const bitField = document.createElement('div');
+        bitField.classList.add('bit-field');
+        bitField.classList.add(getPartClass(i));
+        bitField.textContent = '0';
+        bitField.tabIndex = 0;
+        bitField.onclick = () => {
+          let x = Number(bitField.textContent);
+          bitField.textContent = 1 - x;
+        };
+        bitCell.appendChild(bitField);
+
+        bitContainer.appendChild(bitCell);
+      }
+    }
+
+    createBitFields();
+  </script>
+
+</body>
+
+</html>
+
