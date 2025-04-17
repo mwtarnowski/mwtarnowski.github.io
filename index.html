@@ -48,10 +48,18 @@
       </div>
     </div>
 
+    <div class="hline"></div>
+    <div class="hline"></div>
+
+    <div>
+      <input type="number" id="size-input">
+      <button type="button" id="size-submit">BEEP</button>
+    </div>
+
   </div>
 
   <script>
-    const totalBits = 32;
+    let totalBits = 32;
     let bitPattern = new Array(totalBits).fill(0);
 
     function createBitFields() {
@@ -86,7 +94,19 @@
       }
     }
 
-    createBitFields();
+    function reload(size) {
+      if (!size) return;
+      if (size <= 0) return;
+      totalBits = size;
+      bitPattern = new Array(totalBits).fill(0);
+      createBitFields();
+    }
+
+    const sizeInput = document.getElementById('size-input');
+    const sizeSubmit = document.getElementById('size-submit');
+    sizeSubmit.onclick = () => reload(Number(sizeInput.value));
+
+    reload(32);
   </script>
 
 </body>
