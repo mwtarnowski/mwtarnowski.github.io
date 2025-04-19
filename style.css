@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Reddit Mono';
+  src: url('fonts/RedditMono[wght].woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   font-family: Arial, sans-serif;
   max-width: 80%;
@@ -26,7 +34,7 @@ body {
 .bit-index {
   text-align: center;
   font-size: 10px;
-  font-family: monospace;
+  font-family: 'Reddit Mono', monospace;
   color: #5a5a5a;
   padding: 0;
   margin: 0;
@@ -35,7 +43,7 @@ body {
 
 .bit-field {
   font-weight: bold;
-  font-family: monospace;
+  font-family: 'Reddit Mono', monospace;
   cursor: pointer;
   text-align: center;
   font-size: 1.2rem;
@@ -94,7 +102,7 @@ div.hline {
   outline: none;
 
   font-size: 1rem;
-  font-family: monospace;
+  font-family: 'Reddit Mono', monospace;
   background: #f8f8f8;
   color: #202020;
 }
@@ -120,7 +128,7 @@ div.hline {
 
   font-size: 1rem;
   font-weight: bold;
-  font-family: monospace;
+  font-family: 'Reddit Mono', monospace;
 
   cursor: pointer;
 }
