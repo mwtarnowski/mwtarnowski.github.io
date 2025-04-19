@@ -19,7 +19,7 @@ body {
 #bit-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: left;
+  justify-content: center;
 }
 
 .bit-cell {
@@ -32,9 +32,9 @@ body {
 }
 
 .bit-index {
-  text-align: center;
-  font-size: 10px;
   font-family: 'Reddit Mono', monospace;
+  font-size: 0.5rem;
+  text-align: center;
   color: #5a5a5a;
   padding: 0;
   margin: 0;
@@ -42,16 +42,17 @@ body {
 }
 
 .bit-field {
-  font-weight: bold;
   font-family: 'Reddit Mono', monospace;
-  cursor: pointer;
-  text-align: center;
+  font-weight: bold;
   font-size: 1.2rem;
+  text-align: center;
+  cursor: pointer;
   border: 1px solid black;
+  border-radius: 3px;
   display: inline-block;
-  width: 28px;
-  height: 28px;
-  line-height: 28px;
+  width: 1.4rem;
+  height: 1.4rem;
+  line-height: 1.4rem;
   padding: 0;
   margin: 0;
   user-select: none;
@@ -101,15 +102,10 @@ div.hline {
   border: 1px solid #b0b0b0;
   outline: none;
 
-  font-size: 1rem;
   font-family: 'Reddit Mono', monospace;
+  font-size: 1rem;
   background: #f8f8f8;
   color: #202020;
-}
-
-.input-group input:hover,
-.input-group input:focus {
-  filter: brightness(90%);
 }
 
 .buttons {
@@ -126,9 +122,9 @@ div.hline {
   border: 1px solid #b0b0b0;
   outline: none;
 
+  font-family: 'Reddit Mono', monospace;
   font-size: 1rem;
   font-weight: bold;
-  font-family: 'Reddit Mono', monospace;
 
   cursor: pointer;
 }
