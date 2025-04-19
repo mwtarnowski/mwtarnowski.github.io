@@ -66,8 +66,6 @@
       const bitContainer = document.getElementById('bit-container');
       bitContainer.innerHTML = '';
 
-      const getPartClass = i => i === 0 ? 'sgn' : (i <= 8 ? 'exp' : 'man');
-
       for (let i = 0; i < totalBits; i++) {
         const index = totalBits - i - 1;
 
@@ -81,7 +79,6 @@
 
         const bitField = document.createElement('div');
         bitField.classList.add('bit-field');
-        bitField.classList.add(getPartClass(i));
         bitField.textContent = '0';
         bitField.tabIndex = 0;
         bitField.onclick = () => {
