@@ -9,7 +9,6 @@ body {
 }
 
 #bit-container {
-  margin: 15px auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
@@ -17,7 +16,7 @@ body {
 
 .bit-cell {
   padding: 0;
-  margin: 0;
+  margin: 5px 0;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -28,6 +27,7 @@ body {
   text-align: center;
   font-size: 10px;
   font-family: monospace;
+  color: #5a5a5a;
   padding: 0;
   margin: 0;
   user-select: none;
@@ -125,7 +125,7 @@ div.hline {
   cursor: pointer;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .input-group {
     flex-direction: column;
     align-items: flex-start;
