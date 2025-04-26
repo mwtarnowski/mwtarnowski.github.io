@@ -63,68 +63,69 @@
     let bitPattern = [];
 
     function createBitFields() {
-      const padBits = Math.ceil(totalBits / 8) * 8;
-      bitPattern = new Array(padBits).fill(0); // initialize array
-
-      const bits = [];
-      for (let index = padBits - 1; index >= 0; index--) {
-        const isValid = index < totalBits;
-
-        const bitCell = document.createElement('div');
-        bitCell.classList.add('bit-cell');
-
-        const bitIndex = document.createElement('div');
-        bitIndex.classList.add('bit-index');
-        bitIndex.textContent = index.toString().padStart(2, '0');
-        bitCell.appendChild(bitIndex);
-
-        const bitField = document.createElement('div');
-        bitField.classList.add('bit-field');
-        bitField.dataset.index = index;
-        if (isValid) {
-          bitField.classList.add('part');
-          bitField.dataset.value = '0'; // store initial value
-          bitField.textContent = '0';
-          bitField.tabIndex = 0;
-        } else {
-          bitField.classList.add('empty');
-          bitField.dataset.value = ''; // no value
-        }
-        bitCell.appendChild(bitField);
-
-        bits.push(bitCell);
-      }
+      const totalBytes = Math.ceil(totalBits / 8);
+      bitPattern = new Array(totalBytes * 8).fill(0); // initialize array
 
       const bytesFragment = document.createDocumentFragment();
-      for (let i = 0; i < bits.length; i += 8) {
+
+      // Create bytes in reverse order (MSB first)
+      for (let byteIndex = totalBytes - 1; byteIndex >= 0; byteIndex--) {
         const byte = document.createElement('div');
-        byte.className = 'byte';
-        bits.slice(i, i + 8).forEach(bit => byte.appendChild(bit));
+        byte.classList.add('byte');
+        
+        // Create bits within this byte
+        for (let bitOffset = 7; bitOffset >= 0; bitOffset--) {
+          const index = 8 * byteIndex + bitOffset;
+          const isValid = index < totalBits;
+          
+          const bitCell = document.createElement('div');
+          bitCell.classList.add('bit-cell');
+
+          const bitIndex = document.createElement('div');
+          bitIndex.classList.add('bit-index');
+          bitIndex.textContent = index.toString().padStart(2, '0');
+          bitCell.appendChild(bitIndex);
+
+          const bitField = document.createElement('div');
+          bitField.classList.add('bit-field');
+          bitField.dataset.index = index;
+          if (isValid) {
+            bitField.classList.add('part');
+            bitField.dataset.value = '0'; // store initial value
+            bitField.textContent = '0';
+            bitField.tabIndex = 0;
+          } else {
+            bitField.classList.add('empty');
+            bitField.dataset.value = ''; // no value
+          }
+          bitCell.appendChild(bitField);
+
+          byte.appendChild(bitCell);
+        }
+        
         bytesFragment.appendChild(byte);
       }
 
       const bitContainer = document.getElementById('bit-container');
-      // bitContainer.innerHTML = '';
       const newContainer = bitContainer.cloneNode(false);
-      bitContainer.parentNode.replaceChild(newContainer, bitContainer);
+      bitContainer.replaceWith(newContainer);
 
       newContainer.appendChild(bytesFragment);
+      newContainer.addEventListener('click', handleBitEvent);
+      newContainer.addEventListener('keydown', handleBitEvent);
+    }
 
-      const isBitField = (elem) => elem.classList.contains('bit-field') && !elem.classList.contains('empty');
+    function handleBitEvent(e) {
+      const isClick = e.type === 'click';
+      const isKey = e.type === 'keydown' && (e.key === ' ' || e.key === 'Enter');
+      if (!isClick && !isKey) return;
 
-      newContainer.addEventListener('click', (e) => {
-        if (!isBitField(e.target)) return;
-        toggleBit(e.target);
-      });
+      // const isBitField = e.target.classList.contains('bit-field') && !e.target.classList.contains('empty');
+      const isBitField = e.target.closest('.bit-field:not(.empty)');
+      if (!isBitField) return;
 
-      newContainer.addEventListener('keydown', (e) => {
-        if (e.key === ' ' || e.key === 'Enter') {
-          if (!isBitField(e.target)) return;
-          e.preventDefault();
-          toggleBit(e.target);
-        }
-      });
-
+      if (isKey) e.preventDefault();
+      toggleBit(e.target);
     }
 
     function toggleBit(bitElement) {
