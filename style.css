@@ -13,7 +13,7 @@ body {
   padding: 20px;
   border: 1px solid #b0b0b0;
   color: #3a3a3a;
-  background: #f0f0f0;
+  background: #F5F5F5;
 }
 
 input, button {
@@ -65,7 +65,7 @@ div.hline {
   font-family: 'Reddit Mono', monospace;
   font-size: 0.5rem;
   text-align: center;
-  color: #888;
+  color: #707070;
   padding: 0;
   margin: 0;
   user-select: none;
