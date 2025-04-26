@@ -11,52 +11,63 @@
 </head>
 
 <body>
+  <header class="site-header">
+    <!-- site header here -->
+  </header>
 
-  <div id="bit-container">
-    <!-- bit-cell elements here -->
-  </div>
+  <main class="main-content">
 
-  <div class="hline"></div>
-
-  <div id="values-section">
-    <div class="input-group">
-      <label for="input0">Jumbo:</label>
-      <div class="input-wrapper">
-        <input type="text" id="input0" readonly>
+    <section id="bits-section">
+      <div id="bit-container">
+        <!-- bit-cell elements here -->
       </div>
-    </div>
-
-    <div class="input-group">
-      <label for="input1">Vox:</label>
-      <div class="input-wrapper">
-        <input type="text" id="input1">
-        <div class="buttons">
-          <button type="button">−</button>
-          <button type="button">+</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="input-group">
-      <label for="input2">Buzzbomb:</label>
-      <div class="input-wrapper">
-        <input type="text" id="input2">
-        <div class="buttons">
-          <button type="button">−</button>
-          <button type="button">+</button>
-        </div>
-      </div>
-    </div>
+    </section>
 
     <div class="hline"></div>
+
+    <section id="values-section">
+      <div class="input-group">
+        <label for="input0">Jumbo:</label>
+        <div class="input-wrapper">
+          <input type="text" id="input0" readonly>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="input1">Vox:</label>
+        <div class="input-wrapper">
+          <input type="text" id="input1">
+          <div class="buttons">
+            <button type="button">−</button>
+            <button type="button">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="input2">Buzzbomb:</label>
+        <div class="input-wrapper">
+          <input type="text" id="input2">
+          <div class="buttons">
+            <button type="button">−</button>
+            <button type="button">+</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div class="hline"></div>
 
-    <div>
+    <section id="config-section">
       <input type="number" id="size-input">
       <button type="button" id="size-submit">BEEP</button>
-    </div>
+    </section>
 
-  </div>
+  </main>
+
+  <footer class="site-footer">
+    <!-- site footer here -->
+  </footer>
 
   <script>
     let totalBits = 29;
@@ -72,12 +83,12 @@
       for (let byteIndex = totalBytes - 1; byteIndex >= 0; byteIndex--) {
         const byte = document.createElement('div');
         byte.classList.add('byte');
-        
+
         // Create bits within this byte
         for (let bitOffset = 7; bitOffset >= 0; bitOffset--) {
           const index = 8 * byteIndex + bitOffset;
           const isValid = index < totalBits;
-          
+
           const bitCell = document.createElement('div');
           bitCell.classList.add('bit-cell');
 
@@ -102,7 +113,7 @@
 
           byte.appendChild(bitCell);
         }
-        
+
         bytesFragment.appendChild(byte);
       }
 
@@ -154,4 +165,3 @@
 </body>
 
 </html>
-
