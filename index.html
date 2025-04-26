@@ -59,15 +59,16 @@
   </div>
 
   <script>
-    let totalBits = 32;
-    let bitPattern = new Array(totalBits).fill(0);
+    let totalBits = 29;
+    let bitPattern = [];
 
     function createBitFields() {
-      const bitContainer = document.getElementById('bit-container');
-      bitContainer.innerHTML = '';
+      const padBits = Math.ceil(totalBits / 8) * 8;
+      bitPattern = new Array(padBits).fill(0); // initialize array
 
-      for (let i = 0; i < totalBits; i++) {
-        const index = totalBits - i - 1;
+      const bits = [];
+      for (let index = padBits - 1; index >= 0; index--) {
+        const isValid = index < totalBits;
 
         const bitCell = document.createElement('div');
         bitCell.classList.add('bit-cell');
@@ -79,23 +80,66 @@
 
         const bitField = document.createElement('div');
         bitField.classList.add('bit-field');
-        bitField.textContent = '0';
-        bitField.tabIndex = 0;
-        bitField.onclick = () => {
-          let x = Number(bitField.textContent);
-          bitField.textContent = 1 - x;
-        };
+        bitField.dataset.index = index;
+        if (isValid) {
+          bitField.classList.add('part');
+          bitField.dataset.value = '0'; // store initial value
+          bitField.textContent = '0';
+          bitField.tabIndex = 0;
+        } else {
+          bitField.classList.add('empty');
+          bitField.dataset.value = ''; // no value
+        }
         bitCell.appendChild(bitField);
 
-        bitContainer.appendChild(bitCell);
+        bits.push(bitCell);
       }
+
+      const bytesFragment = document.createDocumentFragment();
+      for (let i = 0; i < bits.length; i += 8) {
+        const byte = document.createElement('div');
+        byte.className = 'byte';
+        bits.slice(i, i + 8).forEach(bit => byte.appendChild(bit));
+        bytesFragment.appendChild(byte);
+      }
+
+      const bitContainer = document.getElementById('bit-container');
+      // bitContainer.innerHTML = '';
+      const newContainer = bitContainer.cloneNode(false);
+      bitContainer.parentNode.replaceChild(newContainer, bitContainer);
+
+      newContainer.appendChild(bytesFragment);
+
+      const isBitField = (elem) => elem.classList.contains('bit-field') && !elem.classList.contains('empty');
+
+      newContainer.addEventListener('click', (e) => {
+        if (!isBitField(e.target)) return;
+        toggleBit(e.target);
+      });
+
+      newContainer.addEventListener('keydown', (e) => {
+        if (e.key === ' ' || e.key === 'Enter') {
+          if (!isBitField(e.target)) return;
+          e.preventDefault();
+          toggleBit(e.target);
+        }
+      });
+
+    }
+
+    function toggleBit(bitElement) {
+      const index = Number(bitElement.dataset.index);
+      let currentValue = Number(bitElement.dataset.value);
+      let newValue = 1 - currentValue;
+      bitElement.dataset.value = newValue.toString();
+      bitElement.textContent = newValue.toString();
+      bitPattern[index] = newValue;
     }
 
     function reload(size) {
       if (!size) return;
       if (size <= 0) return;
       totalBits = size;
-      bitPattern = new Array(totalBits).fill(0);
       createBitFields();
     }
 
@@ -103,7 +147,7 @@
     const sizeSubmit = document.getElementById('size-submit');
     sizeSubmit.onclick = () => reload(Number(sizeInput.value));
 
-    reload(32);
+    reload(29);
   </script>
 
 </body>
