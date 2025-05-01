@@ -18,7 +18,7 @@
   <main class="main-content">
 
     <section id="bits-section">
-      <div id="bit-container">
+      <div id="bit-container" class="bit-container">
         <!-- bit-cell elements here -->
       </div>
     </section>
@@ -99,7 +99,7 @@
 
           const bitField = document.createElement('div');
           bitField.classList.add('bit-field');
-          bitField.dataset.index = index;
+          bitField.dataset.index = index.toString().padStart(2, '0');
           if (isValid) {
             // bitField.setAttribute('role', 'button');
             bitField.classList.add('part');
@@ -111,7 +111,6 @@
             bitField.dataset.value = ''; // no value
           }
           bitCell.appendChild(bitField);
-
           byte.appendChild(bitCell);
         }
 
