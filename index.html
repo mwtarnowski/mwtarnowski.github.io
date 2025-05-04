@@ -11,71 +11,66 @@
 </head>
 
 <body>
-  <header class="site-header">
-    <!-- site header here -->
+  <header>
     <div class="header-left">
       <div class="site-logo"></div>
       <div class="site-title">Mindf*ck</div>
     </div>
-    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
-    <nav id="nav-menu">
-      <a href="#">Stauroza</a>
-      <a href="#">Acraspeda</a>
-    </nav>
   </header>
 
-  <main class="main-content">
+  <main>
+    <div class="main-content">
 
-    <section id="bits-section">
-      <div id="bit-container" class="bit-container">
-        <!-- bit-cell elements here -->
-      </div>
-    </section>
-
-    <div class="hline"></div>
-
-    <section id="values-section">
-      <div class="input-group">
-        <label for="input0">Jumbo:</label>
-        <div class="input-wrapper">
-          <input type="text" id="input0" readonly>
+      <section id="bits-section">
+        <div id="bit-container" class="bit-container">
+          <!-- bit-cell elements here -->
         </div>
-      </div>
+      </section>
 
-      <div class="input-group">
-        <label for="input1">Vox:</label>
-        <div class="input-wrapper">
-          <input type="text" id="input1">
-          <div class="buttons">
-            <button type="button">−</button>
-            <button type="button">+</button>
+      <div class="hline"></div>
+
+      <section id="values-section">
+        <div class="input-group">
+          <label for="input0">Jumbo:</label>
+          <div class="input-wrapper">
+            <input type="text" id="input0" readonly>
           </div>
         </div>
-      </div>
 
-      <div class="input-group">
-        <label for="input2">Buzzbomb:</label>
-        <div class="input-wrapper">
-          <input type="text" id="input2">
-          <div class="buttons">
-            <button type="button">−</button>
-            <button type="button">+</button>
+        <div class="input-group">
+          <label for="input1">Vox:</label>
+          <div class="input-wrapper">
+            <input type="text" id="input1">
+            <div class="buttons">
+              <button type="button">−</button>
+              <button type="button">+</button>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <div class="hline"></div>
+        <div class="input-group">
+          <label for="input2">Buzzbomb:</label>
+          <div class="input-wrapper">
+            <input type="text" id="input2">
+            <div class="buttons">
+              <button type="button">−</button>
+              <button type="button">+</button>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <section id="config-section">
-      <input type="number" id="size-input">
-      <button type="button" id="size-submit">BEEP</button>
-    </section>
+      <div class="hline"></div>
 
+      <section id="config-section">
+        <input type="number" id="size-input">
+        <button type="button" id="size-submit">BEEP</button>
+      </section>
+
+    </div>
   </main>
 
-  <footer class="site-footer">
-    <!-- site footer here -->
+  <footer>
     Ding Ding Dong
   </footer>
 
@@ -163,11 +158,6 @@
       if (size <= 0) return;
       totalBits = size;
       createBitFields();
-    }
-
-
-    function toggleMenu() {
-      document.getElementById('nav-menu').classList.toggle('show');
     }
 
     const sizeInput = document.getElementById('size-input');
