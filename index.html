@@ -17,6 +17,11 @@
       <div class="site-logo"></div>
       <div class="site-title">Mindf*ck</div>
     </div>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+    <nav id="nav-menu">
+      <a href="#">Stauroza</a>
+      <a href="#">Acraspeda</a>
+    </nav>
   </header>
 
   <main class="main-content">
@@ -71,7 +76,7 @@
 
   <footer class="site-footer">
     <!-- site footer here -->
-     Ding Ding Dong
+    Ding Ding Dong
   </footer>
 
   <script>
@@ -158,6 +163,11 @@
       if (size <= 0) return;
       totalBits = size;
       createBitFields();
+    }
+
+
+    function toggleMenu() {
+      document.getElementById('nav-menu').classList.toggle('show');
     }
 
     const sizeInput = document.getElementById('size-input');
