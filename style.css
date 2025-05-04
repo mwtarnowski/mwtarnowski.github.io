@@ -52,19 +52,26 @@ footer {
 .header-left {
   display: flex;
   align-items: center;
+  gap: 0.75rem;
 }
 
 .site-logo {
-  width: 2rem;
-  height: 2rem;
-  background-color: #082c8f;
-  border-radius: 4px;
-  margin-right: 0.75rem;
+  width: 32px;
+  height: 32px;
+}
+
+svg.logo {
+  width: 100%;
+  height: auto;
+}
+
+svg.logo path {
+  fill: #082c8f
 }
 
 .site-title {
-  font-size: 1.5rem;
-  line-height: 2rem;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
   font-weight: 600;
   color: #082c8f;
 }
