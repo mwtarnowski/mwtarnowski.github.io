@@ -15,7 +15,7 @@
     <div class="header-left">
       <svg class="logo" viewBox="0 0 32 32">
         <path
-          d="M2 26 H6 V30 H2 V26 Z M14 6 V2 H26 V6 H30 V24 H30 V26 H26 V30 H14 V26 H10 V6 H14 Z M14 6 V10 H18 V14 H22 V18 H26 V6 H14 Z M14 26 H26 V22 H22 V18 H18 V14 H14 V26 Z">
+          d="M2 26 H6 V30 H2 V26 Z M14 6 V2 H26 V6 H30 V24 H30 V26 H26 V30 H14 V26 H10 V6 H14 Z M14 6 V10 H18 V14 H22 V18 H26 V6 H14 Z M14 26 H26 V22 H22 V18 H18 V14 H14 V26 Z" />
       </svg>
       <h1 class="site-title">Mindf*ck</h1>
     </div>
@@ -101,18 +101,18 @@
           bitIndex.textContent = index.toString().padStart(2, '0');
           bitCell.appendChild(bitIndex);
 
-          const bitField = document.createElement('div');
+          const bitField = document.createElement('button');
           bitField.classList.add('bit-field');
           bitField.dataset.index = index.toString().padStart(2, '0');
           if (isValid) {
-            // bitField.setAttribute('role', 'button');
             bitField.classList.add('part');
-            bitField.dataset.value = '0'; // store initial value
+            bitField.dataset.value = '0';
             bitField.textContent = '0';
-            bitField.tabIndex = 0;
           } else {
             bitField.classList.add('empty');
-            bitField.dataset.value = ''; // no value
+            bitField.disabled = true;
+            bitField.dataset.value = '';
+            bitField.textContent = '';
           }
           bitCell.appendChild(bitField);
           byte.appendChild(bitCell);
@@ -126,21 +126,11 @@
       bitContainer.replaceWith(newContainer);
 
       newContainer.appendChild(bytesFragment);
-      newContainer.addEventListener('click', handleBitEvent);
-      newContainer.addEventListener('keydown', handleBitEvent);
-    }
-
-    function handleBitEvent(e) {
-      const isClick = e.type === 'click';
-      const isKey = e.type === 'keydown' && (e.key === ' ' || e.key === 'Enter');
-      if (!isClick && !isKey) return;
-
-      // const isBitField = e.target.classList.contains('bit-field') && !e.target.classList.contains('empty');
-      const isBitField = e.target.closest('.bit-field:not(.empty)');
-      if (!isBitField) return;
-
-      if (isKey) e.preventDefault();
-      toggleBit(e.target);
+      newContainer.addEventListener('click', function (e) {
+        const bitField = e.target.closest('button.bit-field:not(.empty)');
+        if (!bitField || bitField.disabled) return;
+        toggleBit(bitField);
+      });
     }
 
     function toggleBit(bitElement) {
