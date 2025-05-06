@@ -82,6 +82,9 @@ main {
 .main-content {
   width: 100%;
   max-width: 56rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 input,
@@ -146,7 +149,7 @@ div.hline {
 
   font-family: 'Reddit Mono', monospace;
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1.125rem;
 }
 
 /* .bit-field {
@@ -189,8 +192,13 @@ div.hline {
   filter: none;
 }
 
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .input-group {
-  margin-bottom: 0.5rem;
   display: grid;
   grid-template-columns: 110px 1fr;
   align-items: center;
