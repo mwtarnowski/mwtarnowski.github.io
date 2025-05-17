@@ -35,6 +35,9 @@ footer {
   width: 100%;
   background-color: #d9e8ff;
   padding: 1rem;
+}
+
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -44,7 +47,6 @@ footer {
 footer {
   font-size: 0.75rem;
   text-align: center;
-  justify-content: center;
   border-top: 1px solid #ccc;
 }
 
@@ -68,6 +70,14 @@ svg.logo path {
   line-height: 1.5rem;
   font-weight: 600;
   color: #082c8f;
+}
+
+footer span {
+  color: #082c8fc0;
+}
+
+footer a {
+  color: inherit;
 }
 
 main {
